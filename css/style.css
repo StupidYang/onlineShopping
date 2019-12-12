@@ -423,7 +423,6 @@ header .navbar {
 }
 header .logo {
 	float: left;
-	margin-top: 8px;
 	position: relative;
 }
 header .logo img {
@@ -464,7 +463,7 @@ header .sticky {
 	transition: 0.4s ease-in-out;
 }
 header .navbar li a {
-	font-size: 14px;
+	font-size: 20px;
 	color: #2d3a4b;
 	font-weight: normal;
 	padding: 15px 0px;
@@ -477,11 +476,11 @@ header .navbar li a:before {
 	margin: 0px auto;
 	position: absolute;
 	content: "";
-	height: 6px;
+	height: 8px;
 	left:0px;
 	top: 45%;
 	z-index: -1;
-	background: #ffe115;
+	background: #ff938e;
 	-webkit-transition: 0.2s ease-in-out;
 	-moz-transition: 0.2s ease-in-out;
 	-ms-transition: 0.2s ease-in-out;
@@ -496,11 +495,11 @@ header .navbar li.active a:before {
 	margin: 0px auto;
 	position: absolute;
 	content: "";
-	height: 6px;
+	height: 8px;
 	top: 45%;
 	left:0px;
 	z-index: -1;
-	background: #ffe115;
+	background: #ff938e;
 	-webkit-transition: 0.2s ease-in-out;
 	-moz-transition: 0.2s ease-in-out;
 	-ms-transition: 0.2s ease-in-out;
@@ -1407,11 +1406,11 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	text-align: center;
 }
 .new-arrival-list li h4 a {
-	color: #2d3a4b;
+	color: #ff538c;
 }
 .new-arrival-list li .btn {
-	background: #2d3a4b;
-	color: #fff;
+	background: #414153;
+	color: #ffffff;
 	margin-top: 10px;
 }
 .new-arrival-list li .btn:hover {

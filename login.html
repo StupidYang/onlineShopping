@@ -7,6 +7,33 @@
   <link href="ol/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link href="ol/css/animate.css" rel="stylesheet">
   <link href="ol/css/style.css" rel="stylesheet">
+  <style>
+    header {
+      height: 100px;
+      width: 100%;
+      z-index: 999;
+      background: #fff;
+      padding: 30px 0;
+      position: relative;
+    }
+    header .sticky {
+      width: 100%;
+      -webkit-transition: 0.4s ease-in-out;
+      -moz-transition: 0.4s ease-in-out;
+      -ms-transition: 0.4s ease-in-out;
+      -o-transition: 0.4s ease-in-out;
+      transition: 0.4s ease-in-out;
+    }
+    header .container {
+      padding: 0px;
+    }
+    header .logo {
+      float: left;
+      margin-top: 8px;
+      position: relative;
+      margin-left: 180px;
+    }
+  </style>
   <script type="text/javascript">
     function checkUser(s){
       var regu =/^[a-z|A-Z|0-9|@(a-z|A-z)(a-z|A-z).com]+$/;
@@ -62,10 +89,21 @@
   </script>
 </head>
 <body class="gray-bg">
+<header>
+  <div class="sticky">
+    <div class="container">
+      <div class="logo">
+        <img class="img-responsive" src="logo.png" alt="DDOG 地狗" />
+      </div>
+      <nav class="navbar ownmenu">
+      </nav>
+    </div>
+  </div>
+</header>
 <div class="loginColumns animated fadeInDown">
   <div class="row">
     <div class="col-md-6">
-      <h2 class="font-bold">欢迎进入 在线商城</h2>
+      <h2 class="font-bold">欢迎进入 地狗商城</h2>
       <br>
       <h3>小组成员</h3>
       <p>计科172班&nbsp;杨旭东</p>
@@ -102,7 +140,7 @@
           <p class="text-muted text-center">
             <small>没有账户?</small>
           </p>
-          <a class="btn btn-sm btn-white btn-block" href="register.jsp">创建账户</a>
+          <a class="btn btn-sm btn-white btn-block" href="register.html">创建账户</a>
         </form>
       </div>
     </div>
