@@ -1843,7 +1843,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 .images-slider {
 	position: relative;
 	background: #f7f7f7;
-	z-index: 1;
+	/*z-index: 1;*/
 }
 .images-slider:before {
 	height: 120px;
