@@ -1,14 +1,40 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>会议管理系统-注册</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <title>地狗-注册</title>
+    <link href="ol/css/bootstrap.min.css" rel="stylesheet">
+    <link href="ol/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="ol/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="ol/css/animate.css" rel="stylesheet">
+    <link href="ol/css/style.css" rel="stylesheet">
+    <style>
+        header {
+            height: 100px;
+            width: 100%;
+            z-index: 999;
+            background: #fff;
+            padding: 30px 0;
+            position: relative;
+        }
+        header .sticky {
+            width: 100%;
+            -webkit-transition: 0.4s ease-in-out;
+            -moz-transition: 0.4s ease-in-out;
+            -ms-transition: 0.4s ease-in-out;
+            -o-transition: 0.4s ease-in-out;
+            transition: 0.4s ease-in-out;
+        }
+        header .container {
+            padding: 0px;
+        }
+        header .logo {
+            float: left;
+            margin-top: 8px;
+            position: relative;
+            margin-left: 180px;
+        }
+    </style>
     <script type="text/javascript">
         function checkUser(s){
             var regu =/^[a-z|A-Z|0-9|@(a-z|A-z)(a-z|A-z).com]+$/;
@@ -86,12 +112,21 @@
     </script>
 </head>
 <body class="gray-bg">
-<div class="middle-box text-center loginscreen   animated fadeInDown">
+<header>
+    <div class="sticky">
+        <div class="container">
+            <div class="logo"><img class="img-responsive" src="logo.png" alt="" ></div>
+            <nav class="navbar ownmenu">
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
         <div>
-            <h1 class="logo-name">EM</h1>
+            <h1 class="logo-name">DG</h1>
         </div>
-        <h3>注册  会议管理系统</h3>
+        <h3>注册成为地狗会员</h3>
         <p>填入以下内容用于创建帐户</p>
         <form class="m-t" role="form" action="registerServlet" method="post">
             <div class="form-group">
@@ -123,7 +158,7 @@
             <button type="submit" class="btn btn-primary block full-width m-b">注册</button>
 
             <p class="text-muted text-center"><small>已经有一个账户?</small></p>
-            <a class="btn btn-sm btn-white btn-block" href="login.jsp">登录</a>
+            <a class="btn btn-sm btn-white btn-block" href="login.html">登录</a>
         </form>
     </div>
 </div>

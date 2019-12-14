@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>地狗-订单</title>
+    <link href="ol/css/bootstrap.min.css" rel="stylesheet">
+    <link href="ol/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="ol/css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link href="ol/css/animate.css" rel="stylesheet">
+    <link href="ol/css/style.css" rel="stylesheet">
+    <link href="ol/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+    <!--侧边栏-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="ol/img/profile_small.jpg" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">涂会超</strong>
+                             </span> <span class="text-muted text-xs block">地狗卖家<b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="myth.html">订单管理</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login.html">退出登录</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        DD
+                    </div>
+                </li>
+                <li>
+                    <a href="personal.html"><i class="fa fa-th-large"></i><span class="nav-label">个人信息</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">订单管理</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="shopcart.html" target="_blank">我的购物车</a></li>
+                        <li><a href="myth.html">已买到的宝贝</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">卖家管理</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="myorder.html">已卖出的宝贝</a></li>
+                        <li><a href="selling.html">销售中的宝贝</a></li>
+                        <li><a href="upnew.html">上架新的商品</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <!--顶部-->
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="index.html">地狗首页</a>
+                    </li>
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">欢迎来到地狗</span>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> 退出登录
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!--中间-->
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>已卖出的宝贝</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="personal.html">个人信息</a>
+                    </li>
+                    <li>
+                        <a>卖家管理</a>
+                    </li>
+                    <li class="active">
+                        <strong>已卖出的宝贝</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+        <!--界面-->
+        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+            <!--筛选栏-->
+            <div class="ibox-content m-b-sm border-bottom">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="order_id">订单 ID</label>
+                            <input type="text" id="order_id" name="order_id" value="" placeholder="Order ID" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="status">订单状态</label>
+                            <input type="text" id="status" name="status" value="" placeholder="Status" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="customer">客户</label>
+                            <input type="text" id="customer" name="customer" value="" placeholder="Customer" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="date_added">添加日期</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="03/04/2014">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="date_modified">修改日期</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_modified" type="text" class="form-control" value="03/06/2014">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="amount">金额</label>
+                            <input type="text" id="amount" name="amount" value="" placeholder="Amount" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--表格-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                <tr>
+
+                                    <th>订单 ID</th>
+                                    <th data-hide="phone">客户</th>
+                                    <th data-hide="phone">金额</th>
+                                    <th data-hide="phone">添加日期</th>
+                                    <th data-hide="phone,tablet" >修改日期</th>
+                                    <th data-hide="phone">订单状态</th>
+                                    <th class="text-right">操作</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!--已发货-->
+                                <tr>
+                                    <td>
+                                        3214
+                                    </td>
+                                    <td>
+                                        Customer example
+                                    </td>
+                                    <td>
+                                        $500.00
+                                    </td>
+                                    <td>
+                                        03/04/2015
+                                    </td>
+                                    <td>
+                                        03/05/2015
+                                    </td>
+                                    <td>
+                                        <span class="label label-primary">已发货</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <button disabled="disabled" class="btn-white btn btn-xs">发货</button>
+                                            <button class="btn-white btn btn-xs">修改</button>
+                                            <button disabled="disabled" class="btn-white btn btn-xs">退货</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--待发货-->
+                                <tr>
+                                    <td>
+                                        324
+                                    </td>
+                                    <td>
+                                        Customer example
+                                    </td>
+                                    <td>
+                                        $320.00
+                                    </td>
+                                    <td>
+                                        12/04/2015
+                                    </td>
+                                    <td>
+                                        21/07/2015
+                                    </td>
+                                    <td>
+                                        <span class="label label-success">待发货</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs">发货</button>
+                                            <button class="btn-white btn btn-xs">修改</button>
+                                            <button disabled="disabled" class="btn-white btn btn-xs">退货</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--退货中-->
+                                <tr>
+                                    <td>
+                                        546
+                                    </td>
+                                    <td>
+                                        Customer example
+                                    </td>
+                                    <td>
+                                        $2770.00
+                                    </td>
+                                    <td>
+                                        06/07/2015
+                                    </td>
+                                    <td>
+                                        04/08/2015
+                                    </td>
+                                    <td>
+                                        <span class="label label-danger">退货中</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <button disabled="disabled" class="btn-white btn btn-xs">发货</button>
+                                            <button class="btn-white btn btn-xs">修改</button>
+                                            <button class="btn-white btn btn-xs">退货</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--已退货-->
+                                <tr>
+                                    <td>
+                                        6327
+                                    </td>
+                                    <td>
+                                        Customer example
+                                    </td>
+                                    <td>
+                                        $8560.00
+                                    </td>
+                                    <td>
+                                        01/12/2015
+                                    </td>
+                                    <td>
+                                        05/12/2015
+                                    </td>
+                                    <td>
+                                        <span class="label label-warning">已退货</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <button disabled="disabled" class="btn-white btn btn-xs">发货</button>
+                                            <button class="btn-white btn btn-xs">修改</button>
+                                            <button disabled="disabled" class="btn-white btn btn-xs">退货</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Mainly scripts -->
+<script src="js/ajax.js"></script>
+<script src="ol/js/jquery-2.1.1.js"></script>
+<script src="ol/js/bootstrap.min.js"></script>
+<script src="ol/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="ol/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="ol/js/inspinia.js"></script>
+<script src="ol/js/plugins/pace/pace.min.js"></script>
+<!-- Data picker -->
+<script src="ol/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<!-- FooTable -->
+<script src="ol/js/plugins/footable/footable.all.min.js"></script>
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function() {
+        $('.footable').footable();
+        $('#date_added').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+        $('#date_modified').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+    });
+</script>
+</body>
+</html>

@@ -236,7 +236,7 @@ a:hover, a:focus {
 ========================================================*/
 .btn {
 	border: none;
-	color: #fff;
+	color: #a3996f;
 	display: inline-block;
 	padding: 5px 50px;
 	text-transform: uppercase;
@@ -245,14 +245,15 @@ a:hover, a:focus {
 	border-radius: 0px;
 	font-family: 'Montserrat', sans-serif;
 	line-height: 46px;
-	background: #2d3a4b;
+	background: #ffffff;
+	border: 1px solid #2f2f2f;
 	letter-spacing: 1px;
 	position: relative;
 	z-index: 1;
 }
 .btn:hover {
 	background: #fff;
-	color: #ab4e52;
+	color: #ff001a;
 }
 .btn-white {
 	background: #fff;
@@ -423,7 +424,6 @@ header .navbar {
 }
 header .logo {
 	float: left;
-	margin-top: 8px;
 	position: relative;
 }
 header .logo img {
@@ -464,7 +464,7 @@ header .sticky {
 	transition: 0.4s ease-in-out;
 }
 header .navbar li a {
-	font-size: 14px;
+	font-size: 20px;
 	color: #2d3a4b;
 	font-weight: normal;
 	padding: 15px 0px;
@@ -477,11 +477,11 @@ header .navbar li a:before {
 	margin: 0px auto;
 	position: absolute;
 	content: "";
-	height: 6px;
+	height: 8px;
 	left:0px;
 	top: 45%;
 	z-index: -1;
-	background: #ffe115;
+	background: #ff938e;
 	-webkit-transition: 0.2s ease-in-out;
 	-moz-transition: 0.2s ease-in-out;
 	-ms-transition: 0.2s ease-in-out;
@@ -496,11 +496,11 @@ header .navbar li.active a:before {
 	margin: 0px auto;
 	position: absolute;
 	content: "";
-	height: 6px;
+	height: 8px;
 	top: 45%;
 	left:0px;
 	z-index: -1;
-	background: #ffe115;
+	background: #ff938e;
 	-webkit-transition: 0.2s ease-in-out;
 	-moz-transition: 0.2s ease-in-out;
 	-ms-transition: 0.2s ease-in-out;
@@ -938,6 +938,8 @@ header .user-basket .btn {
 	letter-spacing: 0px;
 	color: #fff;
 	border: none;
+	background: #2d3a4b;
+	font-size: 16px;
 }
 header .user-basket .btn:hover {
 	background: #ffe115;
@@ -1406,12 +1408,12 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	position: relative;
 	text-align: center;
 }
-.new-arrival-list li h4 a {
-	color: #2d3a4b;
-}
+/*.new-arrival-list li h4 a {
+	color: #ff538c;
+}*/
 .new-arrival-list li .btn {
-	background: #2d3a4b;
-	color: #fff;
+	background: #414153;
+	color: #ffffff;
 	margin-top: 10px;
 }
 .new-arrival-list li .btn:hover {
@@ -1642,7 +1644,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	margin-bottom: 50px;
 }
 .item-display {
-	color: #CCC;
+	color: #828282;
 }
 .item-display span.product-num {
 	display: inline-block;
@@ -1841,7 +1843,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 .images-slider {
 	position: relative;
 	background: #f7f7f7;
-	z-index: 1;
+	/*z-index: 1;*/
 }
 .images-slider:before {
 	height: 120px;
@@ -2983,7 +2985,8 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	padding: 0px 30px;
 }
 .shopping-cart .btn:hover {
-	background: #ffe115 !important;
+	background: #8b8d8d !important;
+	color:white !important;
 }
 .small-cart .cart-ship-info form {
 	background: #eeeeee;
@@ -2992,9 +2995,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	width: 100%;
 }
 .small-cart .cart-ship-info form input {
-	width: 70%;
 	float: left;
-	border-right: 0px;
 	margin: 0px;
 }
 .small-cart .cart-ship-info form button.btn {
@@ -3449,7 +3450,7 @@ footer h6 {
 	letter-spacing: 1.5px;
 }
 footer {
-	padding: 120px 0;
+	/*padding: 120px 0;*/
 	padding-bottom: 60px;
 	background: #171e27;
 	position: relative;
