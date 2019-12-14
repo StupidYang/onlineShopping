@@ -92,10 +92,8 @@
                                     <div class="search-overlay"></div>
                                     <div class="position-center-center">
                                         <div class="search">
-                                            <form>
-                                                <input type="search" placeholder="请输入您想要的商品">
-                                                <button type="submit"><i class="icon-check"></i></button>
-                                            </form>
+                                            <input id="searchtext" type="search" placeholder="请输入您想要的商品">
+                                            <button onclick="skip_search_result()" type="button"><i class="icon-check"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +108,7 @@
     <div id="content">
 
         <!-- Products -->
-        <section class="shop-page padding-top-100 padding-bottom-100">
+        <section style="padding-top: 50px;" class="shop-page padding-bottom-100">
             <div class="container">
                 <div class="row">
 
@@ -136,7 +134,8 @@
                     <div class="col-sm-9">
                         <div class="item-display">
                             <div class="row">
-                                <div class="col-xs-6"> <span class="product-num" style="font-size: 16px">您想要的***，他们在这里啦：</span> </div>
+                                <div class="col-xs-6">
+                                    <span class="product-num" style="font-size: 16px">您想要的<font id="searchthing" class="product-num" style="font-size: 16px"></font>，他们在这里啦：</span> </div>
 
                                 <!-- Products Select -->
                                 <div class="col-xs-6">
@@ -152,16 +151,15 @@
                         </div>
 
                         <!-- Popular Item Slide -->
-                        <div class="papular-block row">
+                        <div id="results" class="papular-block row">
 
                             <!-- Item -->
                             <div class="col-md-4">
                                 <div class="item">
                                     <!-- Sale Tags -->
                                     <div class="on-sale"> 10% <span>OFF</span> </div>
-
                                     <!-- Item img -->
-                                    <div class="item-img"> <img class="img-1" src="images/product-2-2.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" >
+                                    <div class="item-img"> <img class="img-1" src="sp_image/jk/s3.jpg" alt="" > <img class="img-2" src="sp_image/jk/s2.jpg" alt="" >
                                         <!-- Overlay -->
                                         <div class="overlay">
                                             <div class="position-center-center">
@@ -173,11 +171,11 @@
                                         </div>
                                     </div>
                                     <!-- Item Name -->
-                                    <div class="item-name"> <a href="#.">gray bag</a>
-                                        <p>Lorem ipsum dolor sit amet</p>
+                                    <div class="item-name"> <a href="productdetail.html">JK制服定制</a>
+                                        <p>简单介绍balabala</p>
                                     </div>
                                     <!-- Price -->
-                                    <span class="price"><small>$</small>299</span> </div>
+                                    <span class="price">¥99999</span> </div>
                             </div>
 
                             <!-- Item -->
@@ -248,6 +246,7 @@
                                     <!-- Price -->
                                     <span class="price"><small>$</small>299</span> </div>
                             </div>
+
                         </div>
 
                         <!-- Pagination -->
@@ -275,6 +274,7 @@
     <!--======= RIGHTS =========-->
     </div>
 </div>
+<script src="js/ajax.js"></script>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/own-menu.js"></script>
@@ -286,5 +286,13 @@
 <script type="text/javascript" src="rs-plugin/js/jquery.tp.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/main.js"></script>
+<script>
+    $(document).ready(function(){
+        var searchthing = getQueryVariable("searchtext");
+        //console.log(searchthing);
+        document.getElementById("searchthing").innerHTML=""+searchthing;
+        //ajax_search();
+    });
+</script>
 </body>
 </html>

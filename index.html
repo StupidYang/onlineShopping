@@ -105,10 +105,8 @@
                                     <div class="search-overlay"></div>
                                     <div class="position-center-center">
                                         <div class="search">
-                                            <form>
-                                                <input type="search" placeholder="请输入您想要的商品">
-                                                <button type="submit"><i class="icon-check"></i></button>
-                                            </form>
+                                            <input id="searchtext" type="search" placeholder="请输入您想要的商品">
+                                            <button onclick="skip_search_result()" type="button"><i class="icon-check"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -122,7 +120,6 @@
 
     <!--======= HOME MAIN SLIDER =========-->
     <section class="home-slider">
-
         <!-- SLIDE 轮播图 Start -->
         <div class="tp-banner-container">
             <div class="tp-banner">
@@ -285,7 +282,7 @@
                              data-endelementdelay="0.1"
                              data-endspeed="300"
                              data-scrolloffset="0"
-                             style="z-index: 8;"><a href="#." class="btn-index">查看店铺</a> </div>
+                             style="z-index: 8;"><a href="shop.html" class="btn-index">即刻选购</a> </div>
                     </li>
                 </ul>
             </div>
@@ -381,6 +378,7 @@
     <!--======= RIGHTS =========-->
 
 </div>
+<script src="js/ajax.js"></script>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/own-menu.js"></script>
