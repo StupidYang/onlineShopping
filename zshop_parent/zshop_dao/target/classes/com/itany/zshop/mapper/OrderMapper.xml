@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Maooer 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itany.zshop.dao.OrderDao">
+
+    <resultMap id="OrderMap" type="Order">
+        <id property="id" column="id"/>
+        <result property="no" column="no"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="prices" column="price"/>
+        <result property="createDate" column="create_date"/>
+        <result property="productId" column="product_id"/>
+        <result property="numbers" column="num"/>
+        <result property="price" column="pa.price"/>
+        <result property="orderId" column="order_id"/>
+    </resultMap>
+
+    <select id="selectByNo" resultType="int">
+        select id
+        from t_order
+        where no=#{no}
+    </select>
+    <select id="selectByCustomerId" resultMap="OrderMap">
+        select p.id,p.no,p.customer_id,p.price,p.create_date,pa.product_id,pa.num,pa.price 'pa.price',pa.order_id
+        from t_order p
+        left join t_item pa
+        on p.id=pa.order_id
+        where p.customer_id=#{customerId}
+        order by p.create_date desc
+    </select>
+
+    <insert id="insert" parameterType="Order">
+        insert into t_order
+        (no, customer_id,price, create_date)
+        values (#{no},#{customerId},#{prices},#{createDate})
+    </insert>
+
+    <delete id="deleteById">
+        delete from t_order
+        where id=#{orderId}
+    </delete>
+</mapper>

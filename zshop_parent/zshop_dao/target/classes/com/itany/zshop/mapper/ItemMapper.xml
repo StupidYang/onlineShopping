@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Maooer 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itany.zshop.dao.ItemDao">
+    <sql id="itemColumn">
+        id,
+        product_id,
+        num,
+        price,
+        order_id
+    </sql>
+
+    <insert id="insert" parameterType="Order">
+        insert into t_item
+        (product_id, num,price, order_id)
+        values (#{productId},#{numbers},#{price},#{orderId})
+    </insert>
+
+    <delete id="deleteByOrderId">
+        delete from t_item
+        where id=#{orderId}
+    </delete>
+</mapper>
+

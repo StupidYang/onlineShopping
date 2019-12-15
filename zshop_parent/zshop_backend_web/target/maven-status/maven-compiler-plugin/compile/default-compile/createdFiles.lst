@@ -1,0 +1,5 @@
+com\itany\zshop\backend\controller\ProductTypeController.class
+com\itany\zshop\backend\vo\ProductVo.class
+com\itany\zshop\backend\controller\SysuserController.class
+com\itany\zshop\backend\controller\CodeController.class
+com\itany\zshop\backend\controller\ProductController.class

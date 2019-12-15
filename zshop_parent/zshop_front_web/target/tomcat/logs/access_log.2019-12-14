@@ -1,0 +1,16 @@
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:42:58 +0800] "GET / HTTP/1.1" 500 24918 http-bio-9002-exec-1 28774
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:44:29 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-9002-exec-2 20
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:45:04 +0800] "GET / HTTP/1.1" 200 29482 http-bio-9002-exec-5 1975
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:45:25 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-9002-exec-7 4
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:45:42 +0800] "POST /front/product/search HTTP/1.1" 200 22619 http-bio-9002-exec-9 652
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:45:51 +0800] "GET /front/Orders/findAll?page=2 HTTP/1.1" 200 14727 http-bio-9002-exec-1 559
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:46:20 +0800] "POST /front/customer/loginByAccount HTTP/1.1" 200 174 http-bio-9002-exec-3 1174
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:46:23 +0800] "GET /front/product/search?page=1 HTTP/1.1" 200 30360 http-bio-9002-exec-5 69
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:46:26 +0800] "GET /front/Orders/findAll?page=2 HTTP/1.1" 200 18012 http-bio-9002-exec-5 2250
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:46:31 +0800] "GET /front/sessions/cart?page=3 HTTP/1.1" 200 10756 http-bio-9002-exec-8 752
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:46:33 +0800] "GET /front/product/search?page=1 HTTP/1.1" 200 30360 http-bio-9002-exec-10 137
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:46:34 +0800] "POST /front/sessions/addSession HTTP/1.1" 200 40 http-bio-9002-exec-10 56
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:46:39 +0800] "GET /front/sessions/cart?page=3 HTTP/1.1" 200 18745 http-bio-9002-exec-4 36
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:47:41 +0800] "POST /front/customer/logout HTTP/1.1" 200 32 http-bio-9002-exec-6 3
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:47:43 +0800] "GET /front/sessions/cart?page=3 HTTP/1.1" 200 10808 http-bio-9002-exec-5 12
+0:0:0:0:0:0:0:1 - - [14/Dec/2019:23:47:45 +0800] "GET /front/product/search?page=1 HTTP/1.1" 200 29482 http-bio-9002-exec-5 62
