@@ -32,4 +32,16 @@
          where login_name=#{loginName} and password=#{password} and is_valid=#{isValid}
     </select>
 
+    <select id="findById" resultMap="customerMap">
+        select <include refid="customerColumn"/>
+        from t_customer
+        where id=#{id}
+    </select>
+
+    <insert id="insertCustomer" parameterType="Customer" >
+       insert into t_customer
+        (name, login_name,password,phone,address,is_valid,regist_date)
+        values (#{name},#{loginName},#{password},#{phone},#{address},#{isValid},#{registDate})
+    </insert>
+
 </mapper>

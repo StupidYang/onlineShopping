@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +20,18 @@
 
     <!-- JavaScripts -->
     <script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+    <script>
+        //添加到购物车
+        function addOrder(id) {
+            $.post(
+                '${pageContext.request.contextPath}/front/sessions/addSession',
+                {'id':id},
+                function (result) {
+                    alert(result.message);
+                }
+            );
+        }
+    </script>
     <style>
         .btn-xss{
             border-radius: 3px;
@@ -96,6 +109,9 @@
                             <c:choose>
                                 <c:when test="${empty customer}">
                                     <li class="dropdown">
+                                        <a href="#." class="dropdown-toggle" data-toggle="modal" data-target="#regModal">注册</a>
+                                    </li>
+                                    <li class="dropdown">
                                         <a href="#." class="dropdown-toggle" data-toggle="modal" data-target="#loginModal">请先登录</a>
                                     </li>
                                 </c:when>
@@ -111,7 +127,7 @@
                                     </li>
                                 </c:otherwise>
                             </c:choose>
-                            <li> <a href="contact.html">留言板</a> </li>
+                            <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
                         </ul>
                     </div>
                     <div class="nav-right">
@@ -159,20 +175,17 @@
                             <!-- Images Slider -->
                             <div class="images-slider">
                                 <ul class="slides" style="margin-left: 110px;">
-                                    <li data-thumb="${pageContext.request.contextPath}/sp_image/jk/s3.jpg"> <img class="img-responsive" src="${pageContext.request.contextPath}/sp_image/jk/s3.jpg"  alt=""> </li>
-                                    <li data-thumb="${pageContext.request.contextPath}/sp_image/jk/s2.jpg"> <img class="img-responsive" src="${pageContext.request.contextPath}/sp_image/jk/s2.jpg"  alt=""> </li>
-                                    <li data-thumb="${pageContext.request.contextPath}/sp_image/jk/s1.jpg"> <img class="img-responsive" src="${pageContext.request.contextPath}/sp_image/jk/s1.jpg"  alt=""> </li>
+                                    <li data-thumb="${product.image}"> <img class="img-responsive" src="${product.image}"  alt=""> </li>
                                 </ul>
                             </div>
                         </div>
 
                         <!-- COntent -->
                         <div class="col-md-5">
-                            <h4>JK制服定制</h4>
-                            <span class="price"><small>¥</small>99999</span>
+                            <h4>${product.name}</h4>
+                            <span class="price"><small>¥</small>${product.price}</span>
 
                             <!-- Sale Tags -->
-                            <div class="on-sale"> 10% <span>OFF</span> </div>
                             <ul class="item-owner">
                                 <li>运费：<font id="sell">江西</font>至<a href="#" id="secity" data-toggle="modal" data-target="#city">请选择</a><font id="cost"></font></li>
                                 <li>卖家：<span>马煜童</span></li>
@@ -180,46 +193,15 @@
 
                             <!-- Item Detail -->
                             <p>
-                                具体描述些巴拉巴拉的
+                                ${product.info}
                             </p>
 
                             <!-- Short By -->
                             <div class="some-info">
                                 <ul class="row margin-top-30">
-                                    <li class="col-xs-8">
-                                        <div class="quinty">
-                                            <!-- QTY -->
-                                            <input style="width: 110px;" type="number">件&nbsp;&nbsp;&nbsp;&nbsp;
-                                            库存<i id="save">9999</i>&nbsp;件
-                                        </div>
-                                    </li>
-                                    <!-- 样式 -->
-                                    <li class="col-xs-12">
-                                        <ul class="colors-shop">
-                                            <li><span class="margin-right-20">尺码</span></li>
-                                            <li><button value="S" class="btn-size">S</button></li>
-                                            <li><button value="M" class="btn-size">M</button></li>
-                                            <li><button value="L" class="btn-size">L</button></li>
-                                            <li><button value="XL" class="btn-size">XL</button></li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-xs-12">
-                                        <ul class="colors-shop">
-                                            <li><span class="margin-right-20">Colors</span></li>
-                                            <li><a href="#." style="background:#958170;"></a></li>
-                                            <li><a href="#." style="background:#c9a688;"></a></li>
-                                            <li><a href="#." style="background:#c9c288;"></a></li>
-                                            <li><a href="#." style="background:#a7c988;"></a></li>
-                                            <li><a href="#." style="background:#9ed66b;"></a></li>
-                                            <li><a href="#." style="background:#6bd6b1;"></a></li>
-                                            <li><a href="#." style="background:#82c2dc;"></a></li>
-                                            <li><a href="#." style="background:#8295dc;"></a></li>
-                                        </ul>
-                                    </li>
-
                                     <!-- 加入购物车和立即购买 -->
-                                    <li class="col-xs-6"> <a href="shopcart.html" class="btn-buynow">立即购买</a> </li>
-                                    <li class="col-xs-6"> <a href="#." class="btn-cart">加入购物车</a> </li>
+                                    <li class="col-xs-6"> <a href="${pageContext.request.contextPath}/front/sessions/cart?page=3" onclick="addOrder(${product.id})" class="btn-buynow">立即购买</a> </li>
+                                    <li class="col-xs-6"> <a href="#" onclick="addOrder(${product.id})" class="btn-cart">加入购物车</a> </li>
 
                                 </ul>
                             </div>
@@ -305,48 +287,35 @@
                             <h6>来看看大家有啥评价</h6>
                             <br>
                             <!-- REVIEW PEOPLE 1 -->
+                            <c:set var="temp" value="0"></c:set>
+                            <c:forEach items="${evaluates}" var="evaluate">
                             <div class="media">
                                 <div class="media-left">
                                     <!--  Image -->
-                                    <div class="avatar"> <a href="#"> <img class="media-object" src="images/avatar-1.jpg" alt=""> </a> </div>
+                                    <div class="avatar"> <a href="#"> <img class="img-thumbnail" src="${pageContext.request.contextPath}/index-img/hyr.jpg" alt=""> </a> </div>
                                 </div>
                                 <!--  Details -->
                                 <div class="media-body">
-                                    <p class="font-playfair">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua.”</p>
-                                    <h6>TYRION LANNISTER <span class="pull-right">MAY 10, 2016</span> </h6>
+                                    <p style="font-size: 18px;font-family: 微软雅黑;" class="font-playfair">${evaluate.evaluate}</p>
                                 </div>
+                                <c:set var="a" value="${evaluate.id}"></c:set>
                             </div>
-
-                            <!-- REVIEW PEOPLE 1 -->
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <!--  Image -->
-                                    <div class="avatar"> <a href="#"> <img class="media-object" src="images/avatar-2.jpg" alt=""> </a> </div>
-                                </div>
-                                <!--  Details -->
-                                <div class="media-body">
-                                    <p class="font-playfair">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua.”</p>
-                                    <h6>TYRION LANNISTER <span class="pull-right">MAY 10, 2016</span> </h6>
-                                </div>
-                            </div>
-
+                            </c:forEach>
                             <!-- ADD REVIEW -->
-                            <form>
                                 <ul class="row">
+                                    <!--<form action="${pageContext.request.contextPath}/front/evaluate/insert" method="post">-->
                                     <h6 class="margin-t-40">您的评价</h6>
+                                        <input class="hidden" id="product_id" name="product_id" value="${product.id}">
                                     <li class="col-sm-12">
                                         <label>
-                                            <textarea></textarea>
+                                            <textarea style="width: 1102px;height: 152px;margin-top: 5px;margin-bottom: 10px;margin-left: 15px;" id="evaluate" name="evaluate"></textarea>
                                         </label>
                                     </li>
                                     <li class="col-sm-6 col-sm-offset-6">
-                                        <button type="submit" class="btn btn-dark btn-small pull-right no-margin">提交评价</button>
+                                        <button type="button" onclick="pingjia()" class="btn btn-dark btn-small pull-right no-margin">提交评价</button>
                                     </li>
                                 </ul>
-                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -428,7 +397,146 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
+    <!--======= 模态框 =========-->
+    <!--登陆-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <!-- 用户名密码登陆 start -->
+            <div class="modal-content" id="login-account">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="text-center" style="color: #ff5c6c">地狗-会员登陆</h4>
+                    <small class="text-danger" id="loginInfo"></small>
+                </div>
+                <form  class="form-horizontal" method="post" id="frmLoginByAccount">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户名：</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="loginName" placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="password" name="password" placeholder="请输入密码">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="text-align: center">
+                        <button style="margin-right: 100px;" type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">关&nbsp;&nbsp;闭</button>
+                        <button type="button" class="btn btn-warning" onclick="loginByAccount()">登&nbsp;&nbsp;陆</button> &nbsp;&nbsp;
+                    </div>
+                </form>
+            </div>
+            <!-- 用户名密码登陆 end -->
+        </div>
+    </div>
+    <!--注册-->
+    <div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content" id="register-account">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="text-center" style="color: #ff5c6c">地狗-会员注册</h4>
+                    <small class="text-danger" id="registerInfo"></small>
+                </div>
+                <form action="${pageContext.request.contextPath}/front/customer/regist" class="form-horizontal" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户姓名:</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">登陆账号:</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="loginName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">登录密码:</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="password" name="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">联系电话:</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">联系地址:</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">关&nbsp;&nbsp;闭</button>
+                        <button type="reset" class="btn btn-warning">重&nbsp;&nbsp;置</button>
+                        <button type="submit" class="btn btn-warning">注&nbsp;&nbsp;册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="${pageContext.request.contextPath}/js/ajax.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/own-menu.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.lighter.js"></script>
+        <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+
+        <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+        <script type="text/javascript" src="${pageContext.request.contextPath}/rs-plugin/js/jquery.tp.t.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/rs-plugin/js/jquery.tp.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/main.js"></script>
+        <script>
+            //密码登入
+            function loginByAccount() {
+                $.post(
+                    '${pageContext.request.contextPath}/front/customer/loginByAccount',
+                    $('#frmLoginByAccount').serialize(),
+                    function (result) {
+                        if (result.status==1) {
+                            $('#loginModal').modal('hide');//登入模态框消失
+                            location.reload(true);
+                        }
+                        else
+                            $('#loginInfo').html(result.message);
+                    }
+                );
+            }
+            //退出
+            function logout() {
+                $.post(
+                    '${pageContext.request.contextPath}/front/customer/logout',
+                    function (result) {
+                        if (result.status==1){
+                            location.reload(true);
+                        }
+                        else
+                            alert("退出失败！");
+                    }
+                )
+            }
+        </script></div>
 </div>
+<script src="${pageContext.request.contextPath}/js/ajax.js"></script>
+<script>
+    function skip(a) {
+        window.location.href=a;
+    }
+    function pingjia() {
+        var product_id = document.getElementById("product_id").value;
+        var evaluate = document.getElementById("evaluate").value;
+        var data = "product_id="+product_id+"&evaluate="+evaluate;
+        Ajax().post("${pageContext.request.contextPath}/front/evaluate/insert",data,skip("${pageContext.request.contextPath}/front/product/findById?id="+product_id));
+    }
+</script>
 <script>
     var place;
     var e;
@@ -446,6 +554,36 @@
         }else {
             document.getElementById("cost").innerHTML="  运费：12.00";
         }
+    }
+</script>
+<script>
+    //密码登入
+    function loginByAccount() {
+        $.post(
+            '${pageContext.request.contextPath}/front/customer/loginByAccount',
+            $('#frmLoginByAccount').serialize(),
+            function (result) {
+                if (result.status==1) {
+                    $('#loginModal').modal('hide');//登入模态框消失
+                    location.reload(true);
+                }
+                else
+                    $('#loginInfo').html(result.message);
+            }
+        );
+    }
+    //退出
+    function logout() {
+        $.post(
+            '${pageContext.request.contextPath}/front/customer/logout',
+            function (result) {
+                if (result.status==1){
+                    location.reload(true);
+                }
+                else
+                    alert("退出失败！");
+            }
+        )
     }
 </script>
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>

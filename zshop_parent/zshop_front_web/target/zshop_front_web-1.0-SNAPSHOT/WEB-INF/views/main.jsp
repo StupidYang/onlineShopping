@@ -86,6 +86,9 @@
                             <c:choose>
                                 <c:when test="${empty customer}">
                                     <li class="dropdown">
+                                        <a href="#." class="dropdown-toggle" data-toggle="modal" data-target="#regModal">注册</a>
+                                    </li>
+                                    <li class="dropdown">
                                         <a href="#." class="dropdown-toggle" data-toggle="modal" data-target="#loginModal">请先登录</a>
                                     </li>
                                 </c:when>
@@ -101,7 +104,7 @@
                                     </li>
                                 </c:otherwise>
                             </c:choose>
-                            <li> <a href="contact.html">留言板</a> </li>
+                            <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
                         </ul>
                     </div>
                     <div class="nav-right">
@@ -205,13 +208,13 @@
                                     <div class="item">
                                         <!-- Item img -->
                                         <div class="item-img">
-                                            <img class="img-1" src="${pageContext.request.contextPath}/sp_image/jk/s3.jpg" alt="" >
-                                            <img class="img-2" src="${pageContext.request.contextPath}/sp_image/jk/s2.jpg" alt="" >
+                                            <img class="img-1" src="${product.image}" alt="" >
+                                            <img class="img-2" src="${product.image}" alt="" >
                                             <!-- Overlay -->
                                             <div class="overlay">
                                                 <div class="position-center-center">
                                                     <div class="inn" style="padding-top: 15px;">
-                                                        <a href="${pageContext.request.contextPath}/sp_image/jk/s3.jpg" data-lighter>
+                                                        <a href="${product.image}" data-lighter>
                                                             <i class="icon-magnifier"></i></a>
                                                         <a href="#" onclick="addOrder(${product.id})"><i class="icon-basket"></i></a>
                                                     </div>
@@ -219,7 +222,7 @@
                                             </div>
                                         </div>
                                         <!-- Item Name -->
-                                        <div class="item-name"> <a href="productdetail.html">${product.name}</a>
+                                        <div class="item-name"> <a href="${pageContext.request.contextPath}/front/product/findById?id=${product.id}">${product.name}</a>
                                             <p>${product.info}</p>
                                         </div>
                                         <!-- Price -->
@@ -288,6 +291,98 @@
                 <!-- 用户名密码登陆 end -->
             </div>
         </div>
+        <!--注册-->
+        <div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content" id="register-account">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="text-center" style="color: #ff5c6c">地狗-会员注册</h4>
+                        <small class="text-danger" id="registerInfo"></small>
+                    </div>
+                    <form action="${pageContext.request.contextPath}/front/customer/regist" class="form-horizontal" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">用户姓名:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">登陆账号:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="loginName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">登录密码:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="password" name="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">联系电话:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">联系地址:</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">关&nbsp;&nbsp;闭</button>
+                            <button type="reset" class="btn btn-warning">重&nbsp;&nbsp;置</button>
+                            <button type="submit" class="btn btn-warning">注&nbsp;&nbsp;册</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script src="${pageContext.request.contextPath}/js/ajax.js"></script>
+            <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/own-menu.js"></script>
+            <script src="${pageContext.request.contextPath}/js/jquery.lighter.js"></script>
+            <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+
+            <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+            <script type="text/javascript" src="${pageContext.request.contextPath}/rs-plugin/js/jquery.tp.t.min.js"></script>
+            <script type="text/javascript" src="${pageContext.request.contextPath}/rs-plugin/js/jquery.tp.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/main.js"></script>
+            <script>
+                //密码登入
+                function loginByAccount() {
+                    $.post(
+                        '${pageContext.request.contextPath}/front/customer/loginByAccount',
+                        $('#frmLoginByAccount').serialize(),
+                        function (result) {
+                            if (result.status==1) {
+                                $('#loginModal').modal('hide');//登入模态框消失
+                                location.reload(true);
+                            }
+                            else
+                                $('#loginInfo').html(result.message);
+                        }
+                    );
+                }
+                //退出
+                function logout() {
+                    $.post(
+                        '${pageContext.request.contextPath}/front/customer/logout',
+                        function (result) {
+                            if (result.status==1){
+                                location.reload(true);
+                            }
+                            else
+                                alert("退出失败！");
+                        }
+                    )
+                }
+            </script></div>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/ajax.js"></script>

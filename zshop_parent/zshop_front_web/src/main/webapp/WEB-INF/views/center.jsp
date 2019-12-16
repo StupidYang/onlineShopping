@@ -34,9 +34,9 @@
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${customer.name}</strong>
                              </span> <span class="text-muted text-xs block">地狗会员<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="myOrders.jsp">我的订单</a></li>
+                            <li><a href="${pageContext.request.contextPath}/front/Orders/findAll?page=2">我的订单</a></li>
                             <li class="divider"></li>
-                            <li><a href="#" onclick="logout()">退出登录</a></li>
+                            <li><a href="${pageContext.request.contextPath}/index.jsp" onclick="logout()">退出登录</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -44,13 +44,13 @@
                     </div>
                 </li>
                 <li>
-                    <a href="personal.jsp"><i class="fa fa-th-large"></i><span class="nav-label">个人信息</span></a>
+                    <a href="${pageContext.request.contextPath}/front/product/center?page=4"><i class="fa fa-th-large"></i><span class="nav-label">个人信息</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">订单管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="cart.jsp" target="_blank">我的购物车</a></li>
-                        <li><a href="myOrders.jsp">已买到的宝贝</a></li>
+                        <li><a href="${pageContext.request.contextPath}/front/sessions/cart?page=3" target="_blank">我的购物车</a></li>
+                        <li><a href="${pageContext.request.contextPath}/front/Orders/findAll?page=2">已买到的宝贝</a></li>
                     </ul>
                 </li>
                 <li>
@@ -78,7 +78,7 @@
                         <span class="m-r-sm text-muted welcome-message">欢迎来到地狗</span>
                     </li>
                     <li>
-                        <a href="#" onclick="logout()">
+                        <a onclick="logout() ">
                             <i class="fa fa-sign-out"></i> 退出登录
                         </a>
                     </li>
@@ -143,10 +143,10 @@
                                     姓名：${customer.name}
                                 </li>
                                 <li class="list-group-item">
-                                    账号：${customer.login_name}
+                                    账号：${customer.loginName}
                                 </li>
                                 <li class="list-group-item ">
-                                    注册日期：${customer.regist_date}
+                                    注册日期：${customer.registDate}
                                 </li>
                                 <li class="list-group-item">
                                     地址：${customer.address}
@@ -192,7 +192,6 @@
                         <div class="ibox-content inspinia-timeline">
                             <div class="timeline-item">
                                 <c:forEach items="${myOrders.list}" var="myorder">
-                                    <!--一个样例-->
                                     <div class="row">
                                         <div class="col-xs-3 date">
                                             <i class="fa fa-briefcase"></i>最新物流时间<br>
@@ -278,12 +277,15 @@
             '${pageContext.request.contextPath}/front/customer/logout',
             function (result) {
                 if (result.status==1){
-                    location.href('${pageContext.request.contextPath}/index.jsp');
+                    location.href='${pageContext.request.contextPath}/index.jsp';
                 }
                 else
                     alert("退出失败！");
             }
         )
+    }
+    function findALL() {
+        Ajax().get('/front/Orders/findAll',"");
     }
 </script>
 </body>

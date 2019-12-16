@@ -16,6 +16,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerDao customerDao;
+
+    @Override
+    public Customer findById(Integer id) {
+        return customerDao.findById(id);
+    }
+
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Customer login(String loginName,String password)throws LoginErrorException{
@@ -24,4 +30,11 @@ public class CustomerServiceImpl implements CustomerService {
             throw new LoginErrorException("登陆失败，用户名或密码不正确");
         return customer;
     }
+
+    @Override
+    public void regist(Customer customer){
+        customerDao.insertCustomer(customer);
+
+    }
+
 }

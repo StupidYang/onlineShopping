@@ -68,6 +68,4 @@ function getQueryVariable(variable) {
     return(false);
 }
 
-function detailsget() {
-    
-}
+

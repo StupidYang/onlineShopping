@@ -8,6 +8,7 @@ function personalSet() {
         window.a[3] = list[4].innerHTML;
         window.a[4] = list[5].innerHTML;
         window.a[5] = list[6].innerHTML;
+        window.a[6] = list[3].innerHTML;
         list[0].innerHTML="<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"姓名\">";
         list[3].innerHTML="<input type=\"text\" id=\"address\" class=\"form-control\" placeholder=\"我的地址\">";
         list[4].innerHTML="<input onBlur='Checktelfun()' id=\"tel\" type=\"text\" class=\"form-control\" placeholder=\"电话号码\"><p id=\"telp\"  class='hide' style='color: red;margin-top: 10px;margin-bottom: 0px;'>电话号码有误！</p>";
@@ -22,6 +23,7 @@ function reset(){
     list[1].innerHTML=window.a[1];
     list[2].innerHTML=window.a[2];
     list[4].innerHTML=window.a[3];
+    list[3].innerHTML=window.a[6];
     list[5].innerHTML=window.a[4];
     list[6].innerHTML=window.a[5];
 }

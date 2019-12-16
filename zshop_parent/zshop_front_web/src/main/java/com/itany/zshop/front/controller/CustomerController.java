@@ -7,6 +7,7 @@ import com.itany.zshop.pojo.Customer;
 import com.itany.zshop.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -39,5 +40,20 @@ public class CustomerController {
     public ResponseResult logout(HttpSession session){
         session.invalidate();
         return ResponseResult.success();
+    }
+
+    @RequestMapping("/findById")
+    @ResponseBody
+    public Customer findById(Integer id){
+        Customer customer = customerService.findById(id);
+        return customer;
+    }
+
+    @RequestMapping("/regist")
+    public String regist(Customer customer, Model model){
+        customerService.regist(customer);
+        model.addAttribute("msg","注册成功");
+        return "center";
+
     }
 }

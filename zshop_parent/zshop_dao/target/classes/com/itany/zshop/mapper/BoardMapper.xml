@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Maooer 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itany.zshop.dao.BoardDao">
+
+    <resultMap id="boardMap" type="Board">
+        <id property="id" column="id"/>
+        <result property="customer_id" column="customer_id"/>
+        <result property="content" column="content"/>
+        <result property="replay" column="replay"/>
+    </resultMap>
+
+    <sql id="boardColumn">
+        id,
+        customer_id,
+        content,
+        replay
+    </sql>
+
+    <select id="findAll" resultMap="boardMap">
+         select <include refid="boardColumn"/>
+         from t_board
+    </select>
+
+    <update id="updateById" parameterType="Board">
+        update t_board
+        set replay=#{replay}
+        where id=#{id}
+    </update>
+
+    <insert id="insert" parameterType="Board">
+        insert into t_board
+        (id,customer_id,content,replay)
+        value (#{id},#{customer_id},#{content},#{replay})
+    </insert>
+
+</mapper>

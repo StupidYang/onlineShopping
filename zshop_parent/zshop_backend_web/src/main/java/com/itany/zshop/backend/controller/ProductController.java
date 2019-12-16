@@ -60,6 +60,15 @@ public class ProductController {
     @RequestMapping("/add")
     public String add(ProductVo productVo,Integer pageNum, HttpSession session, Model model){
         String uploadPath=session.getServletContext().getRealPath("/WEB-INF/upload");
+//        System.out.println(uploadPath);
+//        String[] strs = uploadPath.split("target");
+//        for (String str:strs
+//             ) {
+//            System.out.println(str);
+//        }
+//        uploadPath = strs[0] + "src\\main\\webapp\\WEB-INF\\upload";
+//        System.out.println(uploadPath);
+
         //将vo转化为dto
         try {
             ProductDto productDto = new ProductDto();

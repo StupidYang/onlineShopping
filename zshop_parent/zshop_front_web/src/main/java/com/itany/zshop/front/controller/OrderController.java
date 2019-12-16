@@ -56,6 +56,8 @@ public class OrderController {
         if(customer!=null) {
             List<Order> orders = orderService.findAll(customer.getId());
             for (int i=0;i<orders.size();i++){
+                System.out.println(orders.get(i).getCreateDate());
+                System.out.println(orders.get(i).getProductId());
                 Product product=productService.findById(orders.get(i).getProductId());
                 orders.get(i).setName(product.getName());
                 orders.get(i).setImage(product.getImage());

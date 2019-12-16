@@ -25,6 +25,7 @@ public class SessionController {
 
     @RequestMapping("/cart")
     public String cart(){
+        System.out.println("购物车");
         return "cart";
     }
     @RequestMapping("/addSession")
