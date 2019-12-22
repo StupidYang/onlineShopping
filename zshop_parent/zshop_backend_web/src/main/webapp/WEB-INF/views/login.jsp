@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>在线商城-后台管理系统</title>
+	<title>地狗商城-后台管理登陆</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mycss.css" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<link href="${pageContext.request.contextPath}/ol/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/ol/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/ol/css/animate.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/ol/css/style.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/ol/js/jquery-2.1.1.js"></script>
 	<script>
 		//重新加载验证码
 		function reloadImage() {
@@ -62,70 +63,47 @@
 		}
 	</script>
 </head>
-<body>
-<!-- 使用自定义css样式 div-signin 完成元素居中-->
-<div class="container div-signin">
-	<div class="panel panel-primary div-shadow">
-		<!-- h3标签加载自定义样式，完成文字居中和上下间距调整 -->
-		<div class="panel-heading">
-			<h3>在线商城系统</h3>
-			<span>ZSHOP Manager System</span>
+<body class="gray-bg">
+<div class="loginColumns animated fadeInDown">
+	<div class="row">
+		<div class="col-md-6">
+			<h2 class="font-bold">欢迎进入 地狗后台管理</h2>
+			<br>
+			<h3>小组成员</h3>
+			<p>计科172班&nbsp;杨旭东</p>
+			<p>计科172班&nbsp;涂会超</p>
+			<p>计科172班&nbsp;李&nbsp;&nbsp;&nbsp;翔</p>
+			<p>计科172班&nbsp;马煜童</p>
+			<p>计科174班&nbsp;邵&nbsp;&nbsp;&nbsp;琦</p>
 		</div>
-		<div class="panel-body">
-			<!-- login form start -->
-			<form name="logings" action="${pageContext.request.contextPath}/backend/sysuser/login" class="form-horizontal" method="post">
+		<div class="col-md-6">
+			<div class="ibox-content">
+				<form class="m-t" name="logings" action="${pageContext.request.contextPath}/backend/sysuser/login" method="post">
+					<div class="form-group">
+						<input type="text" name="loginName" id="user" class="form-control" placeholder="用户名">
+					</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">用户名：</label>
-					<div class="col-sm-9">
-						<input class="form-control" name="loginName" type="text" placeholder="请输入用户名">
-					</div>
+				<input type="password" name="password" id="password" class="form-control" placeholder="密码">
 				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-					<div class="col-sm-9">
-						<input class="form-control" name="password" type="password" placeholder="请输入密码">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">验证码：</label>
-					<div class="col-sm-4">
-						<input class="form-control" type="text" id="code" name="code" placeholder="验证码">
-					</div>
-					<div class="col-sm-2">
-						<!-- 验证码 -->
-						<img class="img-rounded" src="${pageContext.request.contextPath}/backend/code/image" id="randCode" style="height: 32px; width: 70px;"/>
-					</div>
-					<div class="col-sm-2">
-						<button type="button" onclick="reloadImage()" class="btn btn-link">看不清</button>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-3">
-					</div>
-					<div class="col-sm-9 padding-left-0">
-						<div class="col-sm-4">
-							<button type="button" onclick="loginSubmit()" class="btn btn-primary btn-block">登&nbsp;&nbsp;陆</button>
-						</div>
-						<div class="col-sm-4">
-							<button type="reset" class="btn btn-primary btn-block">重&nbsp;&nbsp;置</button>
-						</div>
-						<div class="col-sm-4">
-							<button type="button" class="btn btn-link btn-block">忘记密码？</button>
-						</div>
-					</div>
-				</div>
-			</form>
-			<!-- login form end -->
+			<div class="form-group">
+			<!-- 验证码 -->
+			<input style="float: left;width: 206px;margin-right: 5px;" class="form-control" type="text" placeholder="验证码" id="code" name="code">
+			<img class="img-responsive" src="${pageContext.request.contextPath}/backend/code/image"
+				 id="randCode" style="height: 32px; width: 70px;float: left;"/>
+			<button style="padding: 0px;margin-top: 6px;"
+					type="button" class="btn btn-link" onclick="reloadImage()">看不清</button>
 		</div>
+		<div class="text-right" style="width: 150px;float: right;">
+			<a href="#">
+				<small>忘记密码?</small>
+			</a>
+		</div><br>
+		<button style="margin-top: 15px;margin-bottom: 10px;"
+				type="button" onclick="loginSubmit()" class="btn btn-primary block full-width m-b">登录</button>
+		</form>
 	</div>
 </div>
-<!-- 页尾 版权声明 -->
-<div class="container">
-	<div class="col-sm-12 foot-css">
-		<p class="text-muted credit">
-			Copyright 南昌大学卓越171班
-		</p>
-	</div>
+</div>
 </div>
 
 </body>

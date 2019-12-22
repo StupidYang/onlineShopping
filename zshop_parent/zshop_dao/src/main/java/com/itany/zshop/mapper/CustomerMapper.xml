@@ -38,6 +38,12 @@
         where id=#{id}
     </select>
 
+    <select id="update" parameterType="Customer">
+        update t_customer
+        set name=#{name},phone=#{phone},address=#{address}
+        where id=#{id}
+    </select>
+
     <insert id="insertCustomer" parameterType="Customer" >
        insert into t_customer
         (name, login_name,password,phone,address,is_valid,regist_date)

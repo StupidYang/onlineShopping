@@ -76,4 +76,18 @@ public class Customer implements Serializable {
     public void setRegistDate(Date registDate) {
         this.registDate = registDate;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", loginName='" + loginName + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", isValid=" + isValid +
+                ", registDate=" + registDate +
+                '}';
+    }
 }

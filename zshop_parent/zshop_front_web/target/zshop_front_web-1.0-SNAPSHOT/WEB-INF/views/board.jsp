@@ -49,12 +49,14 @@
                                             <hr>
                                             <li> <a href="${pageContext.request.contextPath}/front/Orders/findAll?page=2">我的订单 </a> </li>
                                             <li> <a href="${pageContext.request.contextPath}/front/product/center?page=4">个人信息 </a> </li>
+                                            <li> <a href="http://localhost:8088/zshop_backend_web_war_exploded/showLogin" target="_blank" class="dropdown-toggle">后台登录</a> </li>
                                             <li> <a href="#" onclick="logout()">退出登录 </a> </li>
                                         </ul>
                                     </li>
+                                    <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
                                 </c:otherwise>
                             </c:choose>
-                            <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
+
                         </ul>
                     </div>
                     <div class="nav-right">
@@ -311,7 +313,7 @@
 <script src="${pageContext.request.contextPath}/js/ajax.js"></script>
 <script>
     function skip(a) {
-        window.location.href=a;
+        location.href=a;
     }
     function huifu() {
         var id = document.getElementById("reid").value;

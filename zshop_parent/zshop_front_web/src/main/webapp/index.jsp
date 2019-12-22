@@ -44,6 +44,24 @@
     .hidden{
       display: none;
     }
+    .btn-huifu{
+      height: 53px;
+      float: right;
+      border: 1px solid #fff;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      background: none;
+      width: 28%;
+    }
+    .input-huifu{
+      height: 53px;
+      width: 70%;
+      padding: 0 20px;
+      display: inline;
+      font-size: 12px;
+      float: left;
+    }
   </style>
 </head>
 <body>
@@ -75,12 +93,14 @@
                       <hr>
                       <li> <a href="${pageContext.request.contextPath}/front/Orders/findAll?page=2">我的订单 </a> </li>
                       <li> <a href="${pageContext.request.contextPath}/front/product/center?page=4">个人信息 </a> </li>
+                      <li> <a href="http://localhost:8088/zshop_backend_web_war_exploded/showLogin" target="_blank" class="dropdown-toggle">后台登录</a> </li>
                       <li> <a href="#" onclick="logout()">退出登录 </a> </li>
                     </ul>
                   </li>
+                  <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
                 </c:otherwise>
               </c:choose>
-              <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
+
             </ul>
           </div>
           <div class="nav-right">
@@ -322,7 +342,7 @@
                 <div class="position-center-center">
                   <h4><a style="color: #afc800" href="#.">户外运动</a></h4>
                   <form class="form-inline hot-search" action="${pageContext.request.contextPath}/front/product/search" method="post">
-                    <input style="display: none;" name="name" value="户外运动${productParam.name}">
+                    <input style="display: none;" name="name" value="鞋${productParam.name}">
                     <button type="submit" class="btn btn-small btn-round">点击前往</button>
                   </form>
                   </div>
@@ -356,17 +376,12 @@
                 <div class="position-center-center">
                   <h4><a style="color: #002cff" href="#.">手机数码</a></h4>
                   <form class="form-inline hot-search" action="${pageContext.request.contextPath}/front/product/search" method="post">
-                    <input style="display: none;" name="name" value="手机数码${productParam.name}">
+                    <input style="display: none;" name="name" value="手机${productParam.name}">
                     <button type="submit" class="btn btn-small btn-round">点击前往</button>
                   </form></div>
               </article>
             </li>
           </ul>
-
-          <!-- SHOW MORE -->
-          <!--
-          <div class="text-center margin-top-50"> <a href="#." class="btn btn-small btn-round"> SHOW MORE...</a> </div>
-          -->
         </div>
       </div>
     </section>
@@ -378,10 +393,11 @@
         <div class="heading light-head text-center margin-bottom-30">
           <h4>反馈留言</h4>
           <span>您可以在这里写下您的一些建议！ </span> </div>
-        <form>
-          <input type="text" placeholder="请输入您的想法" required>
-          <button type="submit">告诉我们</button>
-        </form>
+          <div>
+          <input class="hidden" id="customer_id" value="${customer.id}">
+          <input class="input-huifu" type="text" id="liuyancontent" placeholder="请输入您的想法" required>
+          <button class="btn-huifu" type="button" onclick="liuyan()">告诉我们</button>
+          </div>
       </div>
     </section>
   </div>
@@ -496,6 +512,9 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/rs-plugin/js/jquery.tp.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
     <script>
+      function skip(a) {
+        location.href=a;
+      }
       //密码登入
       function loginByAccount() {
         $.post(
@@ -524,6 +543,14 @@
                 }
         )
       }
+      function liuyan() {
+        var customer_id = document.getElementById("customer_id").value;
+        var content = document.getElementById("liuyancontent").value;
+        var data = "customer_id="+customer_id+ "&content="+content;
+        Ajax().post("${pageContext.request.contextPath}/front/board/insert",data,skip("${pageContext.request.contextPath}/front/board/boards"));
+      }
     </script></div>
+
+</div>
 </body>
 </html>

@@ -49,6 +49,18 @@ public class CustomerController {
         return customer;
     }
 
+    @RequestMapping("/update")
+    @ResponseBody
+    public Customer updateById(Customer customer, HttpSession session){
+        //System.out.println(customer.toString());
+        customerService.update(customer);
+        customer = customerService.findById(customer.getId());
+        //System.out.println(customer.toString());
+        session.setAttribute("customer",customer);
+        return customer;
+    }
+
+
     @RequestMapping("/regist")
     public String regist(Customer customer, Model model){
         customerService.regist(customer);

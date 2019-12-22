@@ -75,6 +75,7 @@ public class ProductController {
             productDto.setName(productVo.getName());
             productDto.setPrice(productVo.getPrice());
             productDto.setProductTypeId(productVo.getProductTypeId());
+            productDto.setInfo(productVo.getInfo());
             productDto.setInputStream(productVo.getFile().getInputStream());
             productDto.setFileName(productVo.getFile().getOriginalFilename());
             productDto.setUploadPath(uploadPath);
@@ -106,6 +107,7 @@ public class ProductController {
             productDto.setId(productVo.getId());
             productDto.setName(productVo.getName());
             productDto.setPrice(productVo.getPrice());
+            productDto.setInfo(productVo.getInfo());
             productDto.setProductTypeId(productVo.getProductTypeId());
             productDto.setInputStream(productVo.getFile().getInputStream());
             productDto.setFileName(productVo.getFile().getOriginalFilename());

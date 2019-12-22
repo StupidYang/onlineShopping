@@ -20,6 +20,7 @@
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet">
     <!-- JavaScripts -->
+    <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
     <style>
         .div-line{
@@ -36,26 +37,6 @@
         }
     </style>
     <script>
-        //分页设置
-        $(function () {
-            $('#pagination').bootstrapPaginator({
-                bootstrapMajorVersion:3,
-                currentPage:${pageInfo.pageNum},
-                totalPages:${pageInfo.pages},
-                pageUrl:function (type,page,current) {
-                    return '${pageContext.request.contextPath}/front/product/search?pageNum='+page;
-                },
-                itemTexts:function (type,page,current) {
-                    switch (type) {
-                        case "first":return "首页";
-                        case "prev":return "上一页";
-                        case "next":return "下一页";
-                        case "last":return "末页";
-                        case "page":return page;
-                    }
-                }
-            });
-        });
         //添加到购物车
         function addOrder(id) {
             $.post(
@@ -99,12 +80,14 @@
                                             <hr>
                                             <li> <a href="${pageContext.request.contextPath}/front/Orders/findAll?page=2">我的订单 </a> </li>
                                             <li> <a href="${pageContext.request.contextPath}/front/product/center?page=4">个人信息 </a> </li>
+                                            <li> <a href="http://localhost:8088/zshop_backend_web_war_exploded/showLogin" target="_blank" class="dropdown-toggle">后台登录</a> </li>
                                             <li> <a href="#" onclick="logout()">退出登录 </a> </li>
                                         </ul>
                                     </li>
+                                    <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
                                 </c:otherwise>
                             </c:choose>
-                            <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
+
                         </ul>
                     </div>
                     <div class="nav-right">
@@ -208,13 +191,13 @@
                                     <div class="item">
                                         <!-- Item img -->
                                         <div class="item-img">
-                                            <img class="img-1" src="${product.image}" alt="" >
-                                            <img class="img-2" src="${product.image}" alt="" >
+                                            <img class="img-1" src="http://localhost:8088/zshop_backend_web_war_exploded/${product.image}" alt="" >
+                                            <img class="img-2" src="http://localhost:8088/zshop_backend_web_war_exploded/${product.image}" alt="" >
                                             <!-- Overlay -->
                                             <div class="overlay">
                                                 <div class="position-center-center">
                                                     <div class="inn" style="padding-top: 15px;">
-                                                        <a href="${product.image}" data-lighter>
+                                                        <a href="http://localhost:8088/zshop_backend_web_war_exploded/${product.image}" data-lighter>
                                                             <i class="icon-magnifier"></i></a>
                                                         <a href="#" onclick="addOrder(${product.id})"><i class="icon-basket"></i></a>
                                                     </div>
@@ -232,15 +215,13 @@
                             </c:forEach>
                         </div>
 
-                        <!-- Pagination
-                        <ul class="pagination">
-                            <li class="active"><a href="#">1</a></li>
+                        <ul class="pagination" id="pagination">
+                          <!--  <li class="active"><a href="#">1</a></li>
                             <li><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                             <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            <li><a href="#">5</a></li>-->
                         </ul>
-                        -->
                     </div>
                 </div>
             </div>
@@ -342,51 +323,10 @@
                     </form>
                 </div>
             </div>
-            <script src="${pageContext.request.contextPath}/js/ajax.js"></script>
-            <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
-            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-            <script src="${pageContext.request.contextPath}/js/own-menu.js"></script>
-            <script src="${pageContext.request.contextPath}/js/jquery.lighter.js"></script>
-            <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-
-            <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
-            <script type="text/javascript" src="${pageContext.request.contextPath}/rs-plugin/js/jquery.tp.t.min.js"></script>
-            <script type="text/javascript" src="${pageContext.request.contextPath}/rs-plugin/js/jquery.tp.min.js"></script>
-            <script src="${pageContext.request.contextPath}/js/main.js"></script>
-            <script>
-                //密码登入
-                function loginByAccount() {
-                    $.post(
-                        '${pageContext.request.contextPath}/front/customer/loginByAccount',
-                        $('#frmLoginByAccount').serialize(),
-                        function (result) {
-                            if (result.status==1) {
-                                $('#loginModal').modal('hide');//登入模态框消失
-                                location.reload(true);
-                            }
-                            else
-                                $('#loginInfo').html(result.message);
-                        }
-                    );
-                }
-                //退出
-                function logout() {
-                    $.post(
-                        '${pageContext.request.contextPath}/front/customer/logout',
-                        function (result) {
-                            if (result.status==1){
-                                location.reload(true);
-                            }
-                            else
-                                alert("退出失败！");
-                        }
-                    )
-                }
-            </script></div>
+        </div>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/ajax.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/own-menu.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.lighter.js"></script>
@@ -432,6 +372,21 @@
             }
         )
     }
+    function skippage(page) {
+        location.href='${pageContext.request.contextPath}/front/product/search?pageNum='+page;
+    }
+    $(document).ready(function(){
+        var pagination = document.getElementById("pagination");
+        var now = ${pageInfo.pageNum};
+        var total = ${pageInfo.pages};
+        var i = 1;
+        for(;i<=total;++i){
+            if(i == now)
+                pagination.innerHTML+="<li class=\"active\"><a onclick='skippage("+i+")' href=\"#\">"+i+"</a></li>";
+            else
+                pagination.innerHTML+="<li><a onclick='skippage("+i+")' href=\"#\">"+i+"</a></li>";
+        }
+    });
 </script>
 </body>
 </html>

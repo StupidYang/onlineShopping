@@ -122,12 +122,14 @@
                                             <hr>
                                             <li> <a href="${pageContext.request.contextPath}/front/Orders/findAll?page=2">我的订单 </a> </li>
                                             <li> <a href="${pageContext.request.contextPath}/front/product/center?page=4">个人信息 </a> </li>
+                                            <li> <a href="http://localhost:8088/zshop_backend_web_war_exploded/showLogin" target="_blank" class="dropdown-toggle">后台登录</a> </li>
                                             <li> <a href="#" onclick="logout()">退出登录 </a> </li>
                                         </ul>
                                     </li>
+                                    <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
                                 </c:otherwise>
                             </c:choose>
-                            <li> <a href="${pageContext.request.contextPath}/front/board/boards">留言板</a> </li>
+
                         </ul>
                     </div>
                     <div class="nav-right">
@@ -175,7 +177,7 @@
                             <!-- Images Slider -->
                             <div class="images-slider">
                                 <ul class="slides" style="margin-left: 110px;">
-                                    <li data-thumb="${product.image}"> <img class="img-responsive" src="${product.image}"  alt=""> </li>
+                                    <li data-thumb="${product.image}"> <img class="img-responsive" src="http://localhost:8088/zshop_backend_web_war_exploded/${product.image}"  alt=""> </li>
                                 </ul>
                             </div>
                         </div>

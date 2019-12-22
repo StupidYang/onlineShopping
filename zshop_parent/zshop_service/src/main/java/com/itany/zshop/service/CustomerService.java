@@ -6,5 +6,6 @@ import com.itany.zshop.pojo.Customer;
 public interface CustomerService {
     public Customer login(String loginName,String password)throws LoginErrorException;
     Customer findById(Integer id);
-    public  void regist(Customer customer);
+    public void regist(Customer customer);
+    Customer update(Customer customer);
 }

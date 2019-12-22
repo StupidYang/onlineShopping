@@ -34,7 +34,7 @@
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${customer.name}</strong>
                              </span> <span class="text-muted text-xs block">地狗会员<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="${pageContext.request.contextPath}/front/Orders/findAll?page=2">我的订单</a></li>
+                            <li><a href="${pageContext.request.contextPath}/front/Orders/findAll">我的订单</a></li>
                             <li class="divider"></li>
                             <li><a href="${pageContext.request.contextPath}/index.jsp" onclick="logout()">退出登录</a></li>
                         </ul>
@@ -56,7 +56,8 @@
                 <li>
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">卖家管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="myorder.html">申请成为卖家</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#seller">申请成为卖家</a></li>
+                        <li><a href="http://localhost:8088/zshop_backend_web_war_exploded/showLogin" target="_blank">后台登陆</a></li>
                     </ul>
                 </li>
             </ul>
@@ -102,11 +103,11 @@
                 <div class="col-lg-4">
                     <div class="row m-b-lg m-t-lg">
                         <!--个人简介-->
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="profile-image">
                                 <img src="${pageContext.request.contextPath}/ol/img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
                             </div>
-                            <div class="profile-info">
+                            <div class="profile-info" style="margin-top: 20px;">
                                 <div class="">
                                     <div>
                                         <h2 class="no-margins">
@@ -155,7 +156,7 @@
                                     联系电话：${customer.phone}
                                 </li>
                                 <li class="list-group-item">
-                                    <button type="button" class="btn btn-primary btn-xs">UID</button>${customer.id}
+                                    <button class="btn btn-primary btn-xs">UID</button>${customer.id}
                                 </li>
                                 <li class="list-group-item" id="lilast">
                                     标签：<button class="btn btn-white btn-xs" type="button">非常难</button>
@@ -168,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-                <!-订单信息-->
+                <!--订单信息
                 <div class="col-lg-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
@@ -190,7 +191,7 @@
                             <small><i class="fa fa-map-marker"></i>您的宝贝正在路上哦！</small>
                         </div>
                         <div class="ibox-content inspinia-timeline">
-                            <div class="timeline-item">
+                            <div class="timeline-item" id="mineo">
                                 <c:forEach items="${myOrders.list}" var="myorder">
                                     <div class="row">
                                         <div class="col-xs-3 date">
@@ -207,17 +208,51 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
         <div class="footer">
             <div>
-                会议管理系统
+                地狗个人中心
             </div>
         </div>
     </div>
 </div>
-</div>
-
+<div class="modal inmodal" id="seller" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">地狗商城-卖家申请</h4>
+                <small class="font-bold">如果您已经是卖家，请点击后台登陆进入卖家管理哦！</small>
+            </div>
+            <form action="${pageContext.request.contextPath}/front/seller/regist" method="post">
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label>卖家姓名：</label> <input type="text" name="name" placeholder="输入您的姓名" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>卖家账号：</label> <input type="text" name="loginName" placeholder="输入您想用的账号" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>登陆密码：</label> <input type="password" name="password" placeholder="输入卖家管理的密码（与会员密码无关）" class="form-control">
+                    </div>
+                <div class="form-group">
+                    <label>电子邮箱：</label> <input type="email" name="email" placeholder="输入您的E-mail" class="form-control">
+                </div>
+                    <div class="form-group">
+                        <label>联系电话：</label> <input type="text" name="phone" placeholder="输入您的电话号码" class="form-control">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                <button type="reset" class="btn btn-warning">清空</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <!-- Mainly scripts -->
@@ -260,6 +295,41 @@
 <!-- Toastr -->
 <script src="${pageContext.request.contextPath}/ol/js/plugins/toastr/toastr.min.js"></script>
 <script>
+    function personalx() {
+        var name,id,work,tel;
+        id = ${customer.id};
+        //console.log(id);
+        if(document.getElementById("name").value == ""){
+            name =" ${customer.name}";
+        }else {
+            name = document.getElementById("name").value;
+        }
+        if(document.getElementById("address").value == ""){
+            work = "${customer.address}";
+        }else{
+            work = document.getElementById("address").value;
+        }
+        if(document.getElementById("tel").value == ""){
+            tel = "${customer.phone}";
+        }else{
+            tel = document.getElementById("tel").value;
+        }
+        var data ="id="+id+"&name=" + name + "&address=" + work +"&phone=" + tel;
+        //alert(data);
+        Ajax().post("${pageContext.request.contextPath}/front/customer/update",data,newform);
+    }
+
+    function newform(data) {
+        var json = JSON.parse(data);
+        //console.log(json.name+json.date+json.id);
+        //console.log(json.name);
+        //console.log(json.date);
+        document.getElementById("cancel").classList.add("hide");
+        var list = document.getElementById("personalbox").getElementsByTagName("li");
+        list[0].innerHTML="姓名："+json.name;
+        list[3].innerHTML="地址："+json.address;
+        list[4].innerHTML="联系电话："+json.phone;
+    }
     $(document).ready(function() {
         setTimeout(function() {
             toastr.options = {
@@ -271,7 +341,23 @@
             toastr.success('地狗，引领暴躁生活！', '欢迎回来！');
 
         }, 1300);
+        //Ajax().get("${pageContext.request.contextPath}/front/Orders/findAll",myorders);
     });
+    /*function myorders() {
+        var html='<div class="row">\n' +
+            '                                        <div class="col-xs-3 date">\n' +
+            '                                            <i class="fa fa-briefcase"></i>最新物流时间<br>\n' +
+            '                                            <small class="text-navy">2019-12-20 00:00</small></div>\n' +
+            '                                        <div class="col-xs-7 content no-top-border"><p class="m-b-xs">订单编号：\n' +
+            '                                            <strong>${myorder.no}</strong></p>\n' +
+            '                                            <p>商品名称：${myorder.name}</p>\n' +
+            '                                            <p>总价：￥${myorder.prices}</p>\n' +
+            '                                        </div>\n' +
+            '                                    </div>';
+        <c:forEach items="${myOrders.list}" var="myorder">
+        document.getElementById("mineo").innerHTML+=html;
+        </c:forEach>
+    }*/
     function logout() {
         $.post(
             '${pageContext.request.contextPath}/front/customer/logout',
@@ -284,9 +370,9 @@
             }
         )
     }
-    function findALL() {
+    /*function findALL() {
         Ajax().get('/front/Orders/findAll',"");
-    }
+    }*/
 </script>
 </body>
 </html>

@@ -45,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
         ProductType productType=new ProductType();
         productType.setId(productDto.getProductTypeId());
         product.setProductType(productType);
+        product.setInfo(productDto.getInfo());
 
         productDao.insert(product);
     }
@@ -75,7 +76,7 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productDto.getName());
         product.setImage("/upload/"+fileName);
         product.setPrice(productDto.getPrice());
-
+        product.setInfo(productDto.getInfo());
         ProductType productType=new ProductType();
         productType.setId(productDto.getProductTypeId());
         product.setProductType(productType);

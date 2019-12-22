@@ -47,7 +47,8 @@
                 <li>
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">卖家管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="myorder.html">申请成为卖家</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#seller">申请成为卖家</a></li>
+                        <li><a href="http://localhost:8088/zshop_backend_web_war_exploded/showLogin" target="_blank">后台登陆</a></li>
                     </ul>
                 </li>
             </ul>
@@ -104,11 +105,11 @@
                         <div class="ibox product-detail">
                             <div class="ibox-content">
                                 <div class="row">
-                                    <div class="col-md-5" style="height: 400px;">
+                                    <div class="col-md-4 col-xs-6" style="height: 400px;">
                                         <div class="product-images">
                                             <div>
                                                 <div class="image-imitation" style="padding: 0px;">
-                                                    <img class="img-thumbnail" src="${pageContext.request.contextPath}/sp_image/jk/s3.jpg">
+                                                    <img class="img-thumbnail" src="http://localhost:8088/zshop_backend_web_war_exploded/${myorder.image}">
                                                 </div>
                                             </div>
                                         </div>
@@ -142,7 +143,8 @@
                                         <div>
                                             <div class="btn-group">
                                                 <button onclick="deleteOrder(${myorder.id})" class="btn btn-primary btn-sm">删除订单</button>
-                                                <button class="btn btn-white btn-sm">点击评价</button>
+                                                <a href="${pageContext.request.contextPath}/front/product/findById?id=${myorder.id}"
+                                                        class="btn btn-white btn-sm">点击评价</a>
                                             </div>
                                         </div>
                                     </div>
@@ -152,6 +154,47 @@
                     </div>
                 </div>
             </c:forEach>
+        </div>
+        <div class="footer">
+            <div>
+                地狗个人中心
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="seller" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">地狗商城-卖家申请</h4>
+                <small class="font-bold">如果您已经是卖家，请点击后台登陆进入卖家管理哦！</small>
+            </div>
+            <form action="${pageContext.request.contextPath}/front/seller/regist" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>卖家姓名：</label> <input type="text" name="name" placeholder="输入您的姓名" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>卖家账号：</label> <input type="text" name="loginName" placeholder="输入您想用的账号" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>登陆密码：</label> <input type="password" name="password" placeholder="输入卖家管理的密码（与会员密码无关）" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>电子邮箱：</label> <input type="email" name="email" placeholder="输入您的E-mail" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>联系电话：</label> <input type="text" name="phone" placeholder="输入您的电话号码" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="reset" class="btn btn-warning">清空</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -182,6 +225,18 @@
                 function(result) {
                     if (result.status==1)
                         location.href='${pageContext.request.contextPath}/front/Orders/findAll?page=2';
+                }
+            )
+        }
+        function logout() {
+            $.post(
+                '${pageContext.request.contextPath}/front/customer/logout',
+                function (result) {
+                    if (result.status==1){
+                        location.href='${pageContext.request.contextPath}/index.jsp';
+                    }
+                    else
+                        alert("退出失败！");
                 }
             )
         }

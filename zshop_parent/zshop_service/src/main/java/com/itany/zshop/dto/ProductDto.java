@@ -6,10 +6,19 @@ public class ProductDto {
     private int id;
     private String name;
     private double price;
+    private String info;
     private InputStream inputStream;
     private String fileName;
     private String uploadPath;
     private Integer productTypeId;
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getInfo() {
+        return info;
+    }
 
     public int getId() {
         return id;
