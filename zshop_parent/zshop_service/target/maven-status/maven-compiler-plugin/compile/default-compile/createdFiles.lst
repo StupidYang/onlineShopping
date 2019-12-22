@@ -1,0 +1,13 @@
+com\itany\zshop\service\impl\ItemServiceImpl.class
+com\itany\zshop\service\impl\ProductServiceImpl.class
+com\itany\zshop\service\SysuserService.class
+com\itany\zshop\service\OrderService.class
+com\itany\zshop\service\impl\ProductTypeServiceImpl.class
+com\itany\zshop\service\impl\SysuserServiceImpl.class
+com\itany\zshop\service\ItemService.class
+com\itany\zshop\service\impl\CustomerServiceImpl.class
+com\itany\zshop\service\ProductService.class
+com\itany\zshop\service\CustomerService.class
+com\itany\zshop\dto\ProductDto.class
+com\itany\zshop\service\impl\OrderServiceImpl.class
+com\itany\zshop\service\ProductTypeService.class

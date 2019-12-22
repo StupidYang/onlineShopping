@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Maooer 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itany.zshop.dao.SellerDao">
+
+    <resultMap id="sellerMap" type="Seller">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="loginName" column="login_name"/>
+        <result property="password" column="password"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="isValid" column="is_valid"/>
+        <result property="createDate" column="create_date"/>
+        <result property="apply" column="apply"/>
+    </resultMap>
+
+    <sql id="sellerColumn">
+        id,
+        name,
+        login_name,
+        password,
+        phone,
+        email,
+        is_valid,
+        create_date,
+        apply
+    </sql>
+
+    <select id="selectAll" resultMap="sellerMap">
+        select <include refid="sellerColumn"/>
+        from t_seller
+    </select>
+
+
+    <select id="selectById" resultMap="sellerMap">
+        select <include refid="sellerColumn"/>
+        from t_seller
+        where id=#{id}
+    </select>
+
+    <select id="selectByParams" parameterType="com.itany.zshop.params.SellerParam" resultMap="sellerMap">
+        select <include refid="sellerColumn"/>
+        from t_seller
+        <where>
+            <if test="name!=null and name!=''">
+                and name like concat(concat('%',#{name}),'%')
+            </if>
+            <if test="loginName!=null and loginName!=''">
+                and login_name like concat(concat('%',#{loginName}),'%')
+            </if>
+            <if test="phone!=null and phone!=''">
+                and phone=#{phone}
+            </if>
+            <if test="apply!=null and apply!=-1">
+                and apply=#{apply}
+            </if>
+        </where>
+    </select>
+
+
+
+    <insert id="insertSeller" parameterType="Seller" >
+       insert into t_seller
+        (name, login_name,password,phone,is_valid,email)
+        values (#{name},#{loginName},#{password},#{phone},#{isValid},#{email})
+    </insert>
+
+    <update id="updateStatus">
+        update t_seller
+        set apply=#{apply}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from t_seller
+        where id=#{id}
+    </delete>
+
+    <insert id="insert">
+       insert into t_sysuser
+        (name, login_name,password,phone,email,is_valid,create_date)
+        select name, login_name,password,phone,email,is_valid,create_date
+        from t_seller
+        where  id=#{id}
+    </insert>
+
+
+</mapper>

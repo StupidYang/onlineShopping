@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Maooer 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itany.zshop.dao.EvaluateDao">
+
+    <resultMap id="evaluate" type="Evaluate">
+        <id property="id" column="id"/>
+        <result property="product_id" column="product_id"/>
+        <result property="evaluate" column="evaluate"/>
+        <result property="images" column="images"/>
+    </resultMap>
+
+    <sql id="productColumn">
+        id,
+        product_id,
+        evaluate,
+        images
+    </sql>
+
+    <select id="findByPid" resultMap="evaluate">
+        select <include refid="productColumn"/>
+        from t_evaluate
+        where product_id=#{product_id}
+    </select>
+    <select id="insert">
+        insert into t_evaluate
+        (product_id,evaluate)
+        value (#{product_id},#{evaluate})
+    </select>
+</mapper>
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Maooer 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itany.zshop.dao.CustomerDao">
+
+    <resultMap id="customerMap" type="Customer">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="loginName" column="login_name"/>
+        <result property="password" column="password"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="isValid" column="is_valid"/>
+        <result property="registDate" column="regist_date"/>
+    </resultMap>
+
+    <sql id="customerColumn">
+        id,
+        name,
+        login_name,
+        password,
+        phone,
+        address,
+        is_valid,
+        regist_date
+    </sql>
+
+    <select id="selectByPassword" resultMap="customerMap">
+         select <include refid="customerColumn"/>
+         from t_customer
+         where login_name=#{loginName} and password=#{password} and is_valid=#{isValid}
+    </select>
+
+    <select id="findById" resultMap="customerMap">
+        select <include refid="customerColumn"/>
+        from t_customer
+        where id=#{id}
+    </select>
+
+    <select id="update" parameterType="Customer">
+        update t_customer
+        set name=#{name},phone=#{phone},address=#{address}
+        where id=#{id}
+    </select>
+
+    <insert id="insertCustomer" parameterType="Customer" >
+       insert into t_customer
+        (name, login_name,password,phone,address,is_valid,regist_date)
+        values (#{name},#{loginName},#{password},#{phone},#{address},#{isValid},#{registDate})
+    </insert>
+
+</mapper>
